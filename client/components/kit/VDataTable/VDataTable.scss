@@ -1,0 +1,23 @@
+.v-data-table {
+  padding: 20px;
+
+  &__head {
+    border-bottom: 2px solid rgb(156 181 193);
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-primary;
+  }
+
+  &__body {
+    font-size: 16px;
+
+    tr:first-child td {
+      padding-top: 12px;
+    }
+  }
+
+  &__items-mobile {
+    direction: ltr;
+    text-align: right;
+  }
+}

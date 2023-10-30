@@ -1,0 +1,90 @@
+/**
+ * Radio
+ * *********************************/
+.v-radio {
+  margin-top: 10px;
+  @include no-select;
+
+  &__label {
+    cursor: pointer;
+  }
+
+  &__toggle {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    color: $color-primary;
+    background-color: #edf2f8;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    @include radius(200px);
+
+    &:before {
+      content: " ";
+      display: none;
+      width: 8px;
+      height: 8px;
+      background-color: currentColor;
+      @include absolute-center;
+      @include radius(200px);
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  &__input {
+    @include no-accessible();
+
+    &:checked {
+      + .v-radio__toggle {
+        background-color: rgba($color-primary, 0.2);
+
+        &:before {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &--inline {
+    display: inline-block;
+    vertical-align: middle;
+
+    + .v-radio--inline {
+      margin-right: 20px;
+    }
+  }
+
+  &--align {
+    margin-top: 36px;
+  }
+
+  &--block {
+    &-md {
+      @media #{$only-md} {
+        margin-top: 10px;
+      }
+    }
+
+    &-sm {
+      @media #{$only-sm} {
+        margin-top: 10px;
+      }
+    }
+
+    &-xs {
+      @media #{$xs-down} {
+        margin-top: 10px;
+      }
+    }
+  }
+}

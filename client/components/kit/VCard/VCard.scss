@@ -1,0 +1,32 @@
+.v-card {
+  margin: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 24px;
+  max-width: 800px;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.15);
+  @include radius(25px);
+
+  &__title-wrapper {
+    margin: -32px -46px;
+    padding: 20px 46px 1px;
+    background-color: $color-primary;
+    border-radius: 25px 25px 0 0;
+
+    @media screen and (max-width: 480px) {
+      margin: -32px -4px;
+      padding: 20px 12px 1px;
+    }
+  }
+
+  &__title {
+    color: white;
+    text-align: center;
+    font-size: 1.7em;
+    margin-bottom: 16px;
+
+    @media screen and (max-width: 480px) {
+      font-size: 1.3em;
+    }
+  }
+}

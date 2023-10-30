@@ -1,0 +1,131 @@
+/**
+* Core
+* *********************************/
+
+html, 
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  direction: rtl;
+  position: relative;
+  font-family: YekanBakhFA, "Segoe UI", tahoma, Verdana, Arial, sans-serif !important;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: $page-background;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/**
+* Elements
+* *********************************/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+ol,
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+figure {
+  margin: 0;
+}
+
+small {
+  font-size: 0.875em;
+}
+
+address {
+  font-style: normal;
+}
+
+p,
+pre {
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  font-weight: inherit;
+}
+
+label,
+span {
+  font-weight: inherit;
+}
+
+/**
+* Form Elements
+* *********************************/
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/**
+* Links
+* *********************************/
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+
+a {
+  cursor: pointer;
+  color: inherit;
+}
