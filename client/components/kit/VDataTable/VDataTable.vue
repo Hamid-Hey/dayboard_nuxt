@@ -27,6 +27,12 @@
           </td>
         </tr>
       </tbody>
+
+      <tfoot>
+        <tr v-for="(column, index) in footers" :key="index">
+          <td v-for="(i, ind) in headers.length" :key="ind">{{  }}</td>
+        </tr> 
+      </tfoot>
     </table>
   </div>
 </template>
@@ -41,6 +47,10 @@ export default {
       default: () => [],
     },
     localData: {
+      type: Array,
+      default: () => [],
+    },
+    footers: {
       type: Array,
       default: () => [],
     },
