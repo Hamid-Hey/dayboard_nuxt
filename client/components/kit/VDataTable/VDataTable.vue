@@ -20,6 +20,7 @@
             :key="i"
             :class="[
               'v-data-table__items',
+              `v-data-table__${col.title}-items`,
               { 'v-data-table__items-mobile': col.value === `mobile` },
             ]"
           >
@@ -29,9 +30,31 @@
       </tbody>
 
       <tfoot>
-        <tr v-for="(column, index) in footers" :key="index">
-          <td v-for="(i, ind) in headers.length" :key="ind">{{  }}</td>
-        </tr> 
+        <tr>
+          <td
+            v-for="(column, index) in headers"
+            :key="index"
+            :id="`v-data-table__${column.title}-total`"
+            :class="`v-data-table__${column.title}-footer`"
+          >
+            <slot name="total">
+              {{ totalFooters[index - 1] }}
+            </slot>
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            v-for="(column, index) in headers"
+            :key="index"
+            :id="`v-data-table__${column.title}-average`"
+            :class="`v-data-table__${column.title}-footer`"
+          >
+            <slot name="average">
+              {{ averageFooters[index - 1] }}
+            </slot>
+          </td>
+        </tr>
       </tfoot>
     </table>
   </div>
@@ -51,6 +74,14 @@ export default {
       default: () => [],
     },
     footers: {
+      type: Array,
+      default: () => [],
+    },
+    totalFooters: {
+      type: Array,
+      default: () => [],
+    },
+    averageFooters: {
       type: Array,
       default: () => [],
     },
