@@ -3,11 +3,16 @@
     <v-data-table
       :headers="headers"
       :localData="localData"
-      :footers="tableFooter"
+      :totalFooters="tableTotalFooter"
+      :averageFooters="tableAverageFooter"
       ref="table"
-    />
+    >
+      <template v-slot:total></template>
 
-    <button @click="footer">test</button>
+      <template v-slot:average></template>
+    </v-data-table>
+
+    <button @click="fillFooters">test</button>
   </v-container>
 </template>
 
@@ -94,39 +99,76 @@ export default {
       ],
 
       tableFooter: [],
+      tableTotalFooter: [],
+      tableAverageFooter: [],
     };
   },
 
-  mounted() {
-    console.log(this.$refs.table);
-  },
-
   methods: {
+    calculateActivityTotal() {
+      this.$refs.table.$el;
+    },
+
     footer() {
-      const result = [{}, {}];
+      const activityNodeList = [];
 
-      this.localData.forEach((data) => {
-        Object.keys(data).forEach((key) => {
-          if (key !== "date") {
-            if (!result[0][key]) {
-              result[0][key] = 0;
-            }
-            if (!result[1][key]) {
-              result[1][key] = 0;
-            }
-            result[0][key] += data[key];
-            result[1][key] += data[key] / this.localData.length;
-          }
+      this.headers.forEach((column) => {
+        activityNodeList.push(
+          this.$refs.table.$el.querySelectorAll(
+            `.v-data-table__${column.title}-items`
+          )
+        );
+      });
+
+      activityNodeList.shift();
+
+      const activityHoursNodeList = [];
+
+      activityNodeList.forEach((activity, index) => {
+        activityHoursNodeList.push(activity);
+      });
+
+      const allActivitiesHoursList = [];
+
+      activityHoursNodeList.forEach((item, index) => {
+        const activityHoursList = [];
+
+        item.forEach((i, ind) => {
+          activityHoursList[ind] = i.innerHTML;
         });
+        allActivitiesHoursList.push(activityHoursList);
       });
 
-      Object.keys(result[1]).forEach((key) => {
-        result[1][key] = Math.round(result[1][key]);
+      return allActivitiesHoursList;
+    },
+
+    calculateTotal() {
+      const allActivitiesHoursList = this.footer();
+
+      allActivitiesHoursList.forEach((item, index) => {
+        let sum = 0;
+        item.forEach((i, ind) => {
+          sum += parseFloat(i);
+        });
+        this.tableTotalFooter[index] = sum;
       });
+    },
 
-      this.tableFooter = result;
+    calculateAverage() {
+      const allActivitiesHoursList = this.footer();
 
-      console.log(this.tableFooter);
+      allActivitiesHoursList.forEach((item, index) => {
+        let sum = 0;
+        item.forEach((i, ind) => {
+          sum += parseFloat(i);
+        });
+        this.tableAverageFooter[index] = (sum / item.length).toFixed(2);
+      });
+    },
+
+    fillFooters() {
+      this.calculateTotal();
+      this.calculateAverage();
     },
   },
 };
